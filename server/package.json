@@ -1,0 +1,30 @@
+{
+  "name": "smarvelrenting",
+  "version": "1.0.0",
+  "description": "Technical challenge based on Marvel characters",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParriauxMaxime/smarvelrenting.git"
+  },
+  "keywords": [
+    "technical-challenge",
+    "node.js",
+    "react"
+  ],
+  "author": "Maxime Parriaux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ParriauxMaxime/smarvelrenting/issues"
+  },
+  "homepage": "https://github.com/ParriauxMaxime/smarvelrenting#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1"
+  }
+}
