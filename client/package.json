@@ -4,6 +4,9 @@
   "description": "Technical challenge based on Marvel characters",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack-dev-server",
+    "start": "NODE_ENV=production webpack && webpack-dev-server build/main.bundle.js",
+    "build": "NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +23,38 @@
   "bugs": {
     "url": "https://github.com/ParriauxMaxime/smarvelrenting/issues"
   },
-  "homepage": "https://github.com/ParriauxMaxime/smarvelrenting#readme"
+  "homepage": "https://github.com/ParriauxMaxime/smarvelrenting#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-async-to-generator": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.4.5",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.6",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-flowtype": "^3.9.1",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "flow": "^0.2.3",
+    "flow-bin": "^0.100.0",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.5.1"
+  },
+  "dependencies": {
+    "@hot-loader/react-dom": "^16.8.6",
+    "@material-ui/core": "^4.0.1",
+    "@material-ui/icons": "^4.0.1",
+    "@material-ui/types": "^4.0.1",
+    "react": "^16.8.6",
+    "react-hot-loader": "^4.9.0",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0"
+  }
 }

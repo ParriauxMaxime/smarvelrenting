@@ -1,34 +1,35 @@
 require('dotenv').config();
-const { PORT } = process.env;
-const axios = require('axios');
+
+const { SERVER_PORT: PORT = 8080 } = process.env;
+const cors = require('cors');
 const express = require('express');
-const crypto = require('crypto');
+require('./utils/credentialsChecker');
+const marvelFetcher = require('./utils/marvelFetcher');
 
 const app = express();
+app.use(cors());
+
+
+process.on('SIGINT', () => {
+  process.exit(0);
+});
 
 app.get('/', (req, res) => {
-  console.log('/')
-  res.send('Hello world');
+  const { offset = 0, limit = 20 } = req.query;
+  marvelFetcher('/characters', {
+    params: {
+      limit,
+      offset,
+    },
+  }).then((r) => {
+    res.json(r.data);
+  }).catch((err) => {
+    if (err.response.status === 401) { // && err.response.data.code === 'InvalidCredentials') {
+      throw new Error('Bad credentials');
+    }
+  });
 });
-
-function generateHash(date) {
-  const private = "05535b57e667dd255bde0a750bc643d06b4dddb0" 
-  const public = "7d344f9d8fb214e29a7a6e3584f7adc3"
-  const data = date.toString() + private + public;
-  return crypto.createHash('md5').update(data).digest("hex");
-}
 
 app.listen(PORT, () => {
-  console.log('Launched');
-  const date = Date.now();
-  axios.get(`https://gateway.marvel.com:443/v1/public/characters?apikey=7d344f9d8fb214e29a7a6e3584f7adc3&hash=${generateHash(date)}&ts=${date}`)
-  .then(({data}) => {
-    console.info(data.data.results)
-  }).catch(err => {
-    console.error(err.message, err.description)
-  })
-});
-
-process.on('SIGINT', function() {
-  process.exit(0);
+  console.log('Launched:', PORT);
 });

@@ -1,8 +1,29 @@
 version: '3.1'
 services:
+  client:
+    env_file: .env
+    expose: 
+      - ${CLIENT_PORT}
+    links: 
+      - server
+    image: smarvelrenting-client
+    container_name: client
+    build: ./client
+    ports:
+      - "${CLIENT_PORT}:${CLIENT_PORT}"
+    networks: 
+      - smarvelrentingnet
   server:
     env_file: .env
+    expose: 
+      - ${SERVER_PORT}
     image: smarvelrenting-server
+    container_name: server
     build: ./server
     ports:
       - "${SERVER_PORT}:${SERVER_PORT}"
+    networks: 
+      - smarvelrentingnet
+networks: 
+  smarvelrentingnet:
+    driver: bridge
