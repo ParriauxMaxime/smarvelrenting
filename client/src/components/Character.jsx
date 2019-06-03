@@ -15,27 +15,32 @@ function Character({ name, thumbnail, classes }: Props): React.Element {
         style={{ backgroundImage: `url(${imgUrl})` }}
         className={classes.thumbnail}
       />
-      <Typography variant="h6" className={classes.name} align="center">
-        {name}
-      </Typography>
+      <div className={classes.textContainer}>
+        <Typography variant="h6" className={classes.name} align="center">
+          {name}
+        </Typography>
+      </div>
     </Paper>
   );
 }
 
 export default withStyles((theme: Theme): Styles => ({
   root: {
-    height: 280,
+    height: 320,
     width: 220,
-    padding: theme.spacing(1),
-    backgroundColor: '#888',
+    backgroundColor: '#000',
   },
   thumbnail: {
+    borderBottom: '4px solid red',
     height: 200,
-    width: 200,
+    width: '100%',
     backgroundSize: 'cover',
     backgroundPostion: 'center',
   },
+  textContainer: {
+    padding: theme.spacing(1),
+  },
   name: {
-    color: 'red',
+    color: 'white',
   },
 }))(Character);

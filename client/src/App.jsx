@@ -3,16 +3,20 @@ import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
 import theme from './theme';
-import BasePage from './ components/BasePage';
-import CharactersGrid from './ components/CharactersGrid';
+import BasePage from './components/BasePage';
+import CharactersGrid from './components/CharactersGrid';
+import Controls from './components/Controls';
+import ControlContext, { ControlConsumer } from './components/ControlContext';
 
 function App(): React.Element {
-  fetch('http://localhost:8080/?limit=50&offset=100').then((res: Response): string => res.json()).then((res: Object): void => console.log(res));
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <BasePage>
-        <CharactersGrid />
+        <ControlContext>
+          <Controls />
+          <CharactersGrid />
+        </ControlContext>
       </BasePage>
     </MuiThemeProvider>
   );

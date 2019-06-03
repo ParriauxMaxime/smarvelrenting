@@ -16,6 +16,7 @@ process.on('SIGINT', () => {
 
 app.get('/', (req, res) => {
   const { offset = 0, limit = 20 } = req.query;
+  console.info('Fetching characters', `limit=${limit} offset=${offset}`);
   marvelFetcher('/characters', {
     params: {
       limit,
@@ -24,9 +25,14 @@ app.get('/', (req, res) => {
   }).then((r) => {
     res.json(r.data);
   }).catch((err) => {
-    if (err.response.status === 401) { // && err.response.data.code === 'InvalidCredentials') {
+    if (err.response.status === 401) {
       throw new Error('Bad credentials');
     }
+    if (err.response.status === 429) {
+      console.error('Too many request');
+      return res.json({ status: 429, message: 'Too many request' });
+    }
+    console.error(err);
   });
 });
 

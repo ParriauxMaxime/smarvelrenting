@@ -29,7 +29,7 @@ function init() {
         createError(credentialsNotFound, error);
       }
     } catch (error) {
-      createError('server/.credentials not found', error);
+      createError('serverg/.credentials not found', error);
     }
   }
   console.log('Found credentials');
