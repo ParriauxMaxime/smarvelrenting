@@ -6,7 +6,8 @@ import theme from './theme';
 import BasePage from './components/BasePage';
 import CharactersGrid from './components/CharactersGrid';
 import Controls from './components/Controls';
-import ControlContext, { ControlConsumer } from './components/ControlContext';
+import ControlContext from './components/ControlContext';
+import FetcherContext from './components/FetcherContext';
 
 function App(): React.Element {
   return (
@@ -14,8 +15,10 @@ function App(): React.Element {
       <CssBaseline />
       <BasePage>
         <ControlContext>
-          <Controls />
-          <CharactersGrid />
+          <FetcherContext>
+            <Controls />
+            <CharactersGrid />
+          </FetcherContext>
         </ControlContext>
       </BasePage>
     </MuiThemeProvider>

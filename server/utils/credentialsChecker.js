@@ -26,10 +26,10 @@ function init() {
         console.log('Found credentials');
         return { key, pubKey };
       } catch (error) {
-        createError(credentialsNotFound, error);
+        createError(`${credentialsNotFound} in file .credentials`, error);
       }
     } catch (error) {
-      createError('serverg/.credentials not found', error);
+      createError('file .credentials not found in server directory', error);
     }
   }
   console.log('Found credentials');

@@ -1,9 +1,6 @@
 // @flow
 
-type Params = {
-  offset: number,
-  limit: number
-};
+import axios from 'axios';
 
 export type CharacterResult = {
   id: number,
@@ -23,19 +20,3 @@ export type Data = {
     results: CharacterResult[]
   }
 };
-
-async function fetcher(params: Params = { limit: 20, offset: 0 }): Promise<CharacterResult> {
-  return fetch(`http://localhost:8080/?limit=${params.limit}&offset=${params.offset}`)
-    .then((res: Response): Data => res.json())
-    .then((res): Response => {
-      if (res.status && res.status === 429) {
-        throw new Error('Too many request ');
-      }
-      return res;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-}
-
-export default fetcher;

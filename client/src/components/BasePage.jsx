@@ -11,21 +11,25 @@ type Props = ThemedComponentProps | {
 function BasePage({ children, classes }: Props): React.Element {
   return (
     <React.Fragment>
-      <AppBar position="relative">
+      <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h1" className={classes.title}>
+          <Typography variant="h1" color="secondary" className={classes.title}>
             {'SmarvelRenting'}
           </Typography>
         </Toolbar>
       </AppBar>
-      {children}
+      <div>
+        <div className={classes.container} />
+        {children}
+      </div>
     </React.Fragment>
   );
 }
 
-export default withStyles((): Styles => ({
+export default withStyles((theme): Styles => ({
   title: {
     fontSize: 24,
     fontWeight: 600,
   },
+  container: theme.mixins.toolbar,
 }))(BasePage);
